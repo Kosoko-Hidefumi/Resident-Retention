@@ -48,11 +48,9 @@ export default function App() {
             <Activity className="h-3.5 w-3.5" />
             Resident Retention · 分析ビュー
           </div>
-          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            同窓会メンバー
+          <h1 className="text-3xl font-bold tracking-tight sm:text-4xl">
             <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
-              {" "}
-              ダッシュボード
+              研修医動向一覧
             </span>
           </h1>
           <p className="mt-2 max-w-2xl text-slate-400">
