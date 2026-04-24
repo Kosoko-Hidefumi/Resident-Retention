@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.env.*
+
+# Dashboard
+dashboard/node_modules/
+dashboard/dist/
+*.tsbuildinfo
+
+# 参考用にローカルで置いたクローン（不要）
+ref-List-of-each-term/
+
+# OS
+.DS_Store
+Thumbs.db
