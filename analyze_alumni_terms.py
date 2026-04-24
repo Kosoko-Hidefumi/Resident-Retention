@@ -288,6 +288,30 @@ def analyze(
     return summary, {"detail": detail, "meta": meta}
 
 
+def write_aggregate_exports(
+    summary: pd.DataFrame,
+    uni_df: pd.DataFrame,
+    dest_dir: Path,
+) -> None:
+    """
+    氏名・連絡先を含まない期別集計だけを JSON / CSV で書き出す（Vercel 等で配信可）。
+    """
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    # JSON: 数値型をそのまま保持
+    s_records = summary.to_dict(orient="records")
+    u_records = uni_df.to_dict(orient="records")
+    (dest_dir / "term_summary.json").write_text(
+        json.dumps(s_records, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    (dest_dir / "term_university_origin_pct.json").write_text(
+        json.dumps(u_records, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+    summary.to_csv(dest_dir / "term_summary.csv", index=False, encoding="utf-8-sig")
+    uni_df.to_csv(dest_dir / "term_university_origin_pct.csv", index=False, encoding="utf-8-sig")
+
+
 def main() -> None:
     csv_path = _REPO / "bbb 38-60.csv"
     if not csv_path.exists():
@@ -311,6 +335,10 @@ def main() -> None:
     uni_df = analyze_university_by_period(csv_path)
     uni_df.to_csv(uni_path, index=False, encoding="utf-8-sig")
 
+    public_dir = _REPO / "dashboard" / "public" / "data"
+    write_aggregate_exports(summary, uni_df, out_dir)
+    write_aggregate_exports(summary, uni_df, public_dir)
+
     print("=== 期別サマリー（出身×勤務地） ===")
     print(summary.to_string(index=False))
     print()
@@ -318,9 +346,10 @@ def main() -> None:
     print(uni_df.to_string(index=False))
     print()
     print(f"Wrote: {summary_path}")
-    print(f"Wrote: {detail_path}")
+    print(f"Wrote: {detail_path} (PII — add to .gitignore, do not commit)")
     print(f"Wrote: {meta_path}")
     print(f"Wrote: {uni_path}")
+    print(f"Wrote: {public_dir} (aggregates only: *.json, *.csv for deploy)")
 
 
 if __name__ == "__main__":

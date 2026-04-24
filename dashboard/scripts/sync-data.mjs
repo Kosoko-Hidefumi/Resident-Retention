@@ -7,7 +7,12 @@ const dashboardRoot = path.join(__dirname, "..");
 const analysisDir = path.join(dashboardRoot, "..", "analysis_output");
 const outDir = path.join(dashboardRoot, "public", "data");
 
-const files = ["term_summary.csv", "term_university_origin_pct.csv"];
+const files = [
+  "term_summary.json",
+  "term_university_origin_pct.json",
+  "term_summary.csv",
+  "term_university_origin_pct.csv",
+];
 
 fs.mkdirSync(outDir, { recursive: true });
 

@@ -1,24 +1,25 @@
+/** JSON では数値、CSV では文字列になり得る */
 export type TermSummaryRow = {
-  期: string;
-  総数: string;
-  沖縄出身_県内勤務: string;
-  沖縄出身_県外勤務: string;
-  沖縄出身_勤務先不明: string;
-  県外出身_県内勤務: string;
-  県外出身_県外勤務: string;
-  県外出身_勤務先不明: string;
-  出身不明_県内勤務: string;
-  出身不明_県外勤務: string;
-  出身不明_勤務先不明: string;
+  期: string | number;
+  総数: string | number;
+  沖縄出身_県内勤務: string | number;
+  沖縄出身_県外勤務: string | number;
+  沖縄出身_勤務先不明: string | number;
+  県外出身_県内勤務: string | number;
+  県外出身_県外勤務: string | number;
+  県外出身_勤務先不明: string | number;
+  出身不明_県内勤務: string | number;
+  出身不明_県外勤務: string | number;
+  出身不明_勤務先不明: string | number;
 };
 
 export type UniversityRow = {
-  期: string;
-  総数: string;
-  琉球大学出身_県内_人数: string;
-  その他大学出身_県外_人数: string;
-  琉球大学出身_県内_pct: string;
-  その他大学出身_県外_pct: string;
+  期: string | number;
+  総数: string | number;
+  琉球大学出身_県内_人数: string | number;
+  その他大学出身_県外_人数: string | number;
+  琉球大学出身_県内_pct: string | number;
+  その他大学出身_県外_pct: string | number;
 };
 
 export const WORK_CATEGORY_KEYS = [

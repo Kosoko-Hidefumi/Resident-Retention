@@ -56,8 +56,8 @@ export default function App() {
             </span>
           </h1>
           <p className="mt-2 max-w-2xl text-slate-400">
-            「bbb 38-60.csv」由来の集計（出身×勤務地・琉球大学割合）を可視化します。データを更新した
-           場合は{" "}
+            配信データは <strong className="text-slate-300">期別の集計（人数・割合）のみ</strong>です。
+            元CSVを再集計したら{" "}
             <code className="rounded bg-slate-800 px-1.5 py-0.5 font-mono text-xs text-cyan-300/90">
               python analyze_alumni_terms.py
             </code>{" "}

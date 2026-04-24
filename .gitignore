@@ -6,6 +6,12 @@ venv/
 .env
 .env.*
 
+# 元データ（氏名・連絡先等）。集計は analyze_alumni_terms.py → dashboard/public/data
+bbb 38-60.csv
+
+# 分析のローカル出力（集計のコピー含む。デプロイ用は dashboard/public/data のみコミット）
+analysis_output/
+
 # Dashboard
 dashboard/node_modules/
 dashboard/dist/
