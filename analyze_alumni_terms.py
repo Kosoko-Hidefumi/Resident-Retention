@@ -8,6 +8,8 @@
 沖縄施設ルールの由来: List-of-each-term（kibetu_list）— 同ロジックは okinawa_kibetu.py に同梱。
 
 OPENAI_API_KEY があれば施設名の正規化を試みるが、無くてもキーワード判定で動作する。
+
+デプロイ用の非PIIデータ: `dashboard/public/data/` に期別集計の JSON/CSV を出力する（氏名・連絡先なし）。
 """
 from __future__ import annotations
 
