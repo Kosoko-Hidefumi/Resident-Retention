@@ -1,0 +1,8 @@
+{
+  "name": "resident-retention",
+  "private": true,
+  "description": "Web dashboard in ./dashboard. Python analysis is optional (local only).",
+  "scripts": {
+    "build": "cd dashboard && npm ci && npm run build"
+  }
+}
