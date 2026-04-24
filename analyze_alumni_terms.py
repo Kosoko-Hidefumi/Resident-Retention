@@ -1,9 +1,11 @@
 """
-同窓会メンバーCSV（bbb 38-60.csv）を List-of-each-term の集計思想に合わせて分析する。
+同窓会メンバーCSV（bbb 38-60.csv）の集計。
 
-- 出身: 本籍地（参考プロジェクトの「本籍」と同様に is_okinawa_birthplace）
-- 就職・勤務: 勤務先 + 勤務先住所（参考の「動向調査」に相当する一次情報として扱う）
-- 施設が沖縄県内かは kibetu_list.is_okinawa_facility（キーワード／施設セット）を利用
+- 出身: 本籍地（okinawa_kibetu.is_okinawa_birthplace）
+- 就職・勤務: 勤務先 + 勤務先住所（＋空なら備考）
+- 施設: okinawa_kibetu.is_okinawa_facility（キーワード／施設リスト）
+
+沖縄施設ルールの由来: List-of-each-term（kibetu_list）— 同ロジックは okinawa_kibetu.py に同梱。
 
 OPENAI_API_KEY があれば施設名の正規化を試みるが、無くてもキーワード判定で動作する。
 """
@@ -18,13 +20,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import pandas as pd
 
-# 親リポジトリの List-of-each-term を参照
 _REPO = Path(__file__).resolve().parent
-_KIBETU_ROOT = _REPO.parent / "List-of-each-term"
-if str(_KIBETU_ROOT) not in sys.path:
-    sys.path.insert(0, str(_KIBETU_ROOT))
 
-from kibetu_list import (  # noqa: E402
+from okinawa_kibetu import (
     OKINAWA_FACILITIES_RAW,
     is_okinawa_birthplace,
     is_okinawa_facility,
